@@ -291,6 +291,58 @@
 
                         </fieldset><!--}}}-->
 
+                        <fieldset><!--{{{-->
+                            <legend>Groups</legend>
+
+                            <div class="control-group">
+                                <label class="control-group" for="groups">Group</label>
+                                <div class="controls">
+                                    <select id="groups" name="groups" multiple="multiple" class="global list">
+                                        <!-- No hosts entries by default -->
+                                    </select>
+                                    <div>
+                                        <button class="btn btn-danger" id="groups_remove">Remove Selected Groups</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Add Group</label>
+                                <div class="controls">
+                                    <input type="text" id="groups_new_name" placeholder="Group name" />
+                                    <input type="text" id="groups_new_id" placeholder="Group ID" />
+                                    <div>
+                                        <button class="btn btn-success" id="groups_add">Add Group</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="users">Users</label>
+                                <div class="controls">
+                                    <select id="users" name="users" multiple="multiple" class="global list">
+                                        <!-- No routes definedd by default -->
+                                    </select>
+                                    <div>
+                                        <button class="btn btn-danger" id="users_remove"/>Remove Selected Users</button>
+                                    </div>
+                                </div>
+                             </div>
+                             <div class="control-group">
+                                 <label class="control-label">Add User</label>
+                                 <div class="controls">
+                                    <input type="text" id="users_new_username" placeholder="Username" />
+                                    <input type="text" id="users_new_password" placeholder="Password" />
+                                    <!-- <input type="text" id="users_new_groups" placeholder="Gateway Address" /> -->
+                                    <select id="users_new_groups" name="users_new_groups" class="global">
+                                        <!-- <option value="pvst">PVST</option> -->
+                                    </select>
+                                    <div>
+                                        <button class="btn btn-success" id="users_add">Add Route</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset><!--}}}-->
 
                         <fieldset><!--{{{-->
                             <legend>Errdisable Recovery</legend>
@@ -465,13 +517,13 @@
 
                         </fieldset><!--}}}-->
 
-                        <fieldset><!--{{{-->
+                        <fieldset class="hide"!--{{{-->
                             <legend>Banners</legend>
 
                             <div class="control-group">
                                 <label class="control-label" for="banner_exec">Exec Banner</label>
                                 <div class="controls">
-                                    <textarea id="banner_exec" name="banner_exec" rows="6" cols="45" wrap="off" class="global validate not_empty span4"></textarea>
+                                    <textarea id="banner_exec" name="banner_exec" rows="6" cols="45" wrap="off" class="global validate not_empty span4" >BSSI</textarea>
                                 </div>
                             </div>
 

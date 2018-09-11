@@ -24,6 +24,8 @@ var scgen = {
             ip:                         [ "ip", "%1" ],
             ip_hosts:                   [ "ip host", "%1" ],
             ip_routes:                  [ "ip route", "%1" ],
+            groups:                     [ "group", "%1"],
+            users:                      [ "user", "%1"],
             ip_http_server:             [ "ip http server" ],
             ip_bootp_server:            [ "ip bootp server" ],
             ip_tacacs_sourceinterface:  [ "ip tacacs source-interface", "%1" ],
@@ -554,6 +556,12 @@ var ui = {
             $('#ip_routes_add').click(ui.list.addRouteFromForm);
             $('#ip_routes_remove').click(ui.list.removeRouteFromForm);
 
+            $('#groups_add').click(ui.list.addGroupFromForm);
+            $('#groups_remove').click(ui.list.removeGroupFromForm);
+
+            $('#users_add').click(ui.list.addUserFromForm);
+            $('#users_remove').click(ui.list.removeUserFromForm);
+
             $('#spanning-tree_disable_add').click(ui.list.addDisabledSTPFromForm);
             $('#spanning-tree_disable_remove').click(ui.list.removeDisabledSTPFromForm);
 
@@ -629,6 +637,76 @@ var ui = {
             scgen.generate();
             e.preventDefault();
         },
+
+        //Begin_Dany
+        addGroup: function(name, id) {
+            ui.list.addOption(
+                '#groups',
+                name + ' ' + id,
+                name 
+            );
+
+            ui.list.addOption(
+                '#users_new_groups',
+                name + ' ' + id,
+                name 
+            );
+
+            scgen.generate();
+        },
+
+        addGroupFromForm: function(e) {
+            ui.list.addGroup(
+                $('#groups_new_name').val(),
+                $('#groups_new_id').val(),
+            );
+
+            $('#groups_new_name').val('');
+            $('#groups_new_id').val('');
+
+            e.preventDefault();
+        },
+
+        removeGroupFromForm: function(e) {
+            $('#groups option:selected').remove();
+
+            $('#users_new_groups').html($('#groups').html());
+
+            scgen.generate();
+            e.preventDefault();
+        },
+
+        addUser: function(username, password, group) {
+            ui.list.addOption(
+                '#users',
+                username +' ' + password + ' ' + group,
+                username 
+            );
+
+            scgen.generate();
+        },
+
+        addUserFromForm: function(e) {
+            ui.list.addUser(
+                $('#users_new_username').val(),
+                $('#users_new_password').val(),
+                $('#users_new_groups option:selected').text(),
+            );
+
+            $('#users_new_username').val('');
+            $('#users_new_password').val('');
+
+            e.preventDefault();
+        },
+
+        removeUserFromForm: function(e) {
+            $('#users option:selected').remove();
+
+            scgen.generate();
+            e.preventDefault();
+        },
+
+        //End_Dany
 
         addDisabledSTP: function(vlan) {
             ui.list.addOption(
